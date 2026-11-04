@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sahayak — Human-in-the-Loop AI Browser Assistant</title>
+  <meta name="description" content="Sahayak is a privacy-first Chrome Extension with human-in-the-loop autonomous browser actions, grounded page chat, summarization, and local memory.">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --green: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    header {
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+    .badge {
+      display: inline-block;
+      background-color: rgba(37, 99, 235, 0.2);
+      color: #60a5fa;
+      border: 1px solid rgba(37, 99, 235, 0.4);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      background: linear-gradient(to right, #60a5fa, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.lead {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 32px;
+    }
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background-color: var(--accent);
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+    .btn-secondary {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-secondary:hover {
+      border-color: #64748b;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #f1f5f9;
+    }
+    .card p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .install-box {
+      margin-top: 60px;
+      background-color: #0b1120;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 30px;
+    }
+    .install-box h2 {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+    ol {
+      margin-left: 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    ol li strong {
+      color: #e2e8f0;
+    }
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid var(--border);
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">Chrome Manifest V3 Side Panel</div>
+      <h1>Sahayak (सहायक)</h1>
+      <p class="lead">Your intelligent, human-in-the-loop web companion. Read, explore, and automate browser tasks with single-step approvals, strict privacy rails, and local memory.</p>
+      
+      <div class="cta-buttons">
+        <a href="https://github.com/tarun-sharma/sahayak-ai-browser/releases" class="btn btn-primary">Download Extension (.ZIP)</a>
+        <a href="#quickstart" class="btn btn-secondary">Installation Guide</a>
+      </div>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h3>⚡ Article & Video Summaries</h3>
+        <p>Extract clean structured summaries from news articles or full YouTube transcripts into concise key takeaways in English or Hinglish.</p>
+      </div>
+      <div class="card">
+        <h3>🤖 Autonomous Approval Agent</h3>
+        <p>High-precision DOM element badge numbering. The AI proposes actions one step at a time with optional dry-run preview and human approval.</p>
+      </div>
+      <div class="card">
+        <h3>🛡️ Code-Enforced Safety Rails</h3>
+        <p>Pre-call safety blocks sensitive domains (banking, payments, logins) and protected inputs (passwords, OTPs, credit cards). Kill switch included.</p>
+      </div>
+      <div class="card">
+        <h3>🧠 Local Memory & Skills</h3>
+        <p>Manage your user profile and custom prompt templates safely in browser-local storage with complete JSON backup export/import.</p>
+      </div>
+      <div class="card">
+        <h3>💬 Grounded Page Chat</h3>
+        <p>Engage in contextual Q&A strictly grounded in the content of the currently viewed active tab without hallucination.</p>
+      </div>
+      <div class="card">
+        <h3>👁️ Visual QA</h3>
+        <p>Capture visible screenshots for visual question answering with local memory cleanup.</p>
+      </div>
+    </div>
+
+    <section id="quickstart" class="install-box">
+      <h2>Quick 2-Minute Installation</h2>
+      <ol>
+        <li>Download the latest release ZIP: <strong>sahayak-extension.zip</strong>.</li>
+        <li>Unzip the archive to a local folder on your computer.</li>
+        <li>Open Chrome and navigate to <strong>chrome://extensions</strong>.</li>
+        <li>Toggle on <strong>Developer mode</strong> in the top-right corner.</li>
+        <li>Click <strong>Load unpacked</strong> and select the unzipped directory.</li>
+        <li>Pin Sahayak and open the Side Panel to configure your free Gemini API key in Settings.</li>
+      </ol>
+    </section>
+
+    <footer>
+      <p>Sahayak — Built with React, Vite, TypeScript, Chrome Extensions Manifest V3, and Gemini AI. 100% Client-Side Memory.</p>
+    </footer>
+  </div>
+</body>
+</html>
+
